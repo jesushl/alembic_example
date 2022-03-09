@@ -1,8 +1,8 @@
 import requests
+# settings 
+from  app.settings import get_settings
 # store in cache
 from functools import lru_cache 
-# app settings 
-from app.main import get_settings
 # api url 
 from app.constants import (
     ALPHAVANTAGE_API_URL, 
@@ -19,7 +19,7 @@ def get_function_link(symbol: str, function: str):
     return ALPHAVANTAGE_API_URL.format(
         symbol=symbol,
         function=function,
-        ALPHAVANTAGE_KEY=settings.ALPHAVANTAGE_KEY
+        ALPHAVANTAGE_KEY=settings.alphavantage_key
     )
 
 
