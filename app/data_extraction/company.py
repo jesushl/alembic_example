@@ -27,10 +27,16 @@ def get_function_link(symbol: str, function: str):
 
 def get_company_overview(symbol: str) -> dict:
     function = OVERVIEW_FUNCTION
-
+    url = get_function_link(
+        symbol=symbol,
+        function=function
+    )
+    response = requests.get(url)
+    return response.json()
 
 def get_company_earnings(symbol: str) -> dict:
     function = EARNINGS_FUNCTION
     api_url = get_function_link(symbol=symbol, function=function)
     response = requests.get(api_url)
-    return response
+    return response.json()
+

@@ -6,7 +6,8 @@ class APPSettings(BaseSettings):
     app_name: str = "Companies"
     admin_email: str = "jesushledon@gmail.com"
     alphavantage_key: str
-
+    sqlalchemy_database_url: str
+    
     class Config:
         env_file = "app/.env"
 
