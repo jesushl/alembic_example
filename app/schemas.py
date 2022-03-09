@@ -55,7 +55,7 @@ class SectorCreate(BaseModel):
 
 class Sector(SectorBase):
     id: int
-    companies: list[Company] = []
+    companies: list["Company"] = []
 
     class Config:
         orm_mode = True
@@ -72,7 +72,27 @@ class CountryCreate(CountryBase):
 
 class Country(CountryBase):
     id: int
-    companies: list[Company] = []
+    companies: list[int] = []
+
+    class Config:
+        orm_mode = True
+
+
+# Company
+class CompanyBase(BaseModel):
+    symbol: str
+    description: str
+
+
+class CompanyCreate(CompanyBase):
+    country: CountryBase
+    sector: SectorBase
+    annual_earnings: list["AnnualEarningBase"] = []
+    quarterly_earnings: list["QuarterlyEarningsBase"] = []
+
+
+class Company(CompanyCreate):
+    id: int
 
     class Config:
         orm_mode = True
