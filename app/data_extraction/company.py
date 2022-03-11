@@ -37,3 +37,6 @@ def get_company_earnings(symbol: str) -> dict:
     api_url = get_function_link(symbol=symbol, function=function)
     response = requests.get(api_url)
     return response.json()
+
+def get_company_data():
+    pass
