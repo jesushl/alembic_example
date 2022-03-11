@@ -16,3 +16,5 @@ quarterly_earnings = "quarterlyEarnings"
 
 # ENV VARS
 ALPHAVANTAGE_KEY = os.getenv("ALPHAVANTAGE_KEY")
+
+DATABASE_URL=os.environ.get("DATABASE_URL", "sqlite:///./sql_app.db")
