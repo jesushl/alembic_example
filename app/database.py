@@ -3,7 +3,7 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 # settings
-from settings import get_settings
+from app.settings import get_settings
 
 settings = get_settings()
 
