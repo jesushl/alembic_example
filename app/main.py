@@ -7,7 +7,10 @@ from .settings import APPSettings, get_settings
 
 # description
 from .constants import PROJECT_DESCRIPTION, APP_TITLE
+# database
+from app.database import Base, engine   
 
+Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title=APP_TITLE, description=PROJECT_DESCRIPTION)
 

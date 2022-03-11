@@ -6,13 +6,13 @@ from .database import Base
 # Company Database model
 class Country(Base):
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
+    name = Column(String, unique=True)
     companies = relationship("Company", back_populates="country")
 
 
 class Sector(Base):
     id = Column(Integer, primary_key=True, index=True)
-    name = Column(String)
+    name = Column(String, unique=True)
     companies = relationship("Company", back_populates="sector")
 
 
@@ -38,7 +38,7 @@ class QuarterlyEarnings(Base):
 class Company(Base):
     __tablename__ = "company"
     id = Column(Integer, primary_key=True, index=True)
-    symbol = Column(String)
+    symbol = Column(String, unique=True)
     description = Column(String)
     country = relationship("Country", back_populates="companies")
     sector = relationship("Sector", back_populates="companies")
