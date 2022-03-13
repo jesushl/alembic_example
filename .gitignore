@@ -1,6 +1,6 @@
 env
 *.env
-*.env.*
+higo.env.dev
 *.pyc
 __pycache__/
 *.db
