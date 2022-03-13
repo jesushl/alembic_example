@@ -10,9 +10,7 @@ from functools import lru_cache
 from app.constants import (
     ALPHAVANTAGE_API_URL,
     EARNINGS_FUNCTION,
-    OVERVIEW_FUNCTION,
-    annual_earnings,
-    quarterly_earnings,
+    OVERVIEW_FUNCTION
 )
 
 settings = get_settings()
@@ -21,7 +19,9 @@ settings = get_settings()
 @lru_cache()
 def get_function_link(symbol: str, function: str):
     return ALPHAVANTAGE_API_URL.format(
-        symbol=symbol, function=function, ALPHAVANTAGE_KEY=settings.alphavantage_key
+        symbol=symbol, 
+        function=function, 
+        ALPHAVANTAGE_KEY=settings.alphavantage_key
     )
 
 

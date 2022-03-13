@@ -13,15 +13,21 @@ from app.database import  engine
 from app.models import Company
 
 from app.models import Base
+# data complilations
+from app.data_transform_n_load.company_load import  LoadCompany
 
 app = FastAPI(title=APP_TITLE, description=PROJECT_DESCRIPTION)
 
 Base.metadata.create_all(bind=engine)
 
 @app.post("/aggregate/{symbol}")
-async def aggregate_symbol(symbol: str):
-    pass
-
+def aggregate_symbol(symbol: str):
+    company_load = LoadCompany()
+    _cd = company_load.get_company_data(symbol=symbol)
+    #_earnings = company_load.get_company_quarterly_earnings(
+    #    _cd['EARNINGS']
+    # )
+    import pdb; pdb.set_trace()
 
 @app.get("/sumary/{symbol}")
 async def get_company_sumary(symbol: str):

@@ -10,9 +10,22 @@ ALPHAVANTAGE_API_URL = "https://www.alphavantage.co/query?function={function}&sy
 
 EARNINGS_FUNCTION = "EARNINGS"
 OVERVIEW_FUNCTION = "OVERVIEW"
-
-annual_earnings = "annualEarnings"
-quarterly_earnings = "quarterlyEarnings"
+SYMBOL_KEY = 'symbol'
+ANNUAL_EARNINGS_KEY='annualEarnings'
+QUARTERLY_EARNINGS_KEY='quarterlyEarnings'
+## ALPHAVANTAGE API KEYS
+annual_earnings_key = "annualEarnings"
+quarterly_earnings_key = "quarterlyEarnings"
+fiscal_date_ending_key="fiscalDateEnding"
+reportedEPS_key='reportedEPS'
+reported_date_key='reportedDate'
+surprice_key='surprice'
+surprice_percentage_key='surpricePercentaje'
+name_key = 'name'
+description_key = 'Description',
+country_key = 'Country'
+industry_key = 'Industry'
+sector_key = 'Sector'
 
 # ENV VARS
 ALPHAVANTAGE_KEY = os.getenv("ALPHAVANTAGE_KEY")
