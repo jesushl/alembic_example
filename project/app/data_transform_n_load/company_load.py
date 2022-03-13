@@ -1,4 +1,7 @@
+# DB Session
+from sqlalchemy.orm import Session
 # loaders
+from pytest import Session
 from sqlalchemy import over
 from app.data_extraction import company as company_loader
 # models 
@@ -27,7 +30,9 @@ from app.constants import (
 )
 
 class LoadCompany():
-
+    def __init__(self, db: Session):
+        self.db = db
+    
     def get_company_data(self, symbol: str) -> dict:
         company_data = dict()
         company_overview = company_loader.get_company_overview(
@@ -48,8 +53,7 @@ class LoadCompany():
             if not company:
                 comp_instance = Company(
                     symbol=symbol,
-                    description = overview[description_key],
-                    
+                    description = overview[description_key]                    
                 )
 
     def get_company_quarterly_earnings(self, earnings: dict)->bool:
@@ -67,4 +71,4 @@ class LoadCompany():
                 compani_id = company.id
             )
             q_earnings = list(map(q_earnings_lamb, quarterly_earnings))
-            import pdb; pdb.set_trace()
+           pass
