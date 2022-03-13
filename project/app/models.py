@@ -1,16 +1,18 @@
 from sqlalchemy import Boolean, Column, ForeignKey, Integer, String, Date, Float
 from sqlalchemy.orm import relationship
 
-from .database import Base
+from app.database import Base
 
 # Company Database model
 class Country(Base):
+    __tablename__ = "country"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True)
     companies = relationship("Company", back_populates="country")
 
 
 class Sector(Base):
+    __tablename__ = "sector"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True)
     companies = relationship("Company", back_populates="sector")
@@ -25,7 +27,7 @@ class AnnualEarning(Base):
 
 
 class QuarterlyEarnings(Base):
-    __tablename__ = "anual_earning"
+    __tablename__ = "quarterly_earning"
     id = Column(Integer, primary_key=True, index=True)
     fiscal_date_ending = Column(Date)
     reported_eps = Column(Float)

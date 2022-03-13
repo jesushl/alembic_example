@@ -1,3 +1,4 @@
+import imp
 from multiprocessing.connection import wait
 from fastapi import FastAPI, Depends
 
@@ -8,7 +9,8 @@ from .settings import APPSettings, get_settings
 from .constants import PROJECT_DESCRIPTION, APP_TITLE
 # database
 from app.database import Base, engine   
-
+# model
+from app.models import Company
 
 app = FastAPI(title=APP_TITLE, description=PROJECT_DESCRIPTION)
 
