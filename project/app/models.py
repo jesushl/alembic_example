@@ -8,7 +8,7 @@ class Country(Base):
     __tablename__ = "country"
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String, unique=True)
-    company = relationship("Company", back_populates="country")
+    companies = relationship("Company", back_populates="country")
 
 
 class Sector(Base):
@@ -23,8 +23,8 @@ class AnnualEarning(Base):
     id = Column(Integer, primary_key=True, index=True)
     fiscal_date_ending = Column(Date)
     reported_eps = Column(Float)
-    compani_id = Column(Integer, ForeignKey("country.id"))
-    company = relationship("Company", back_populates="anual_earning")
+    company_id = Column(Integer, ForeignKey("company.id"))
+    company = relationship("Company", back_populates="annual_earnings")
 
 
 class QuarterlyEarnings(Base):
@@ -35,8 +35,8 @@ class QuarterlyEarnings(Base):
     estimated_eps = Column(Float)
     surprise = Column(Float)
     surprice_percentage = Column(Float)
-    compani_id = Column(Integer, ForeignKey("country.id"))
-    company = relationship("Company", back_populates="quarterly_earning")
+    company_id = Column(Integer, ForeignKey("company.id"))
+    company = relationship("Company", back_populates="quarterly_earnings")
 
 class Company(Base):
     __tablename__ = "company"
@@ -48,5 +48,5 @@ class Company(Base):
     sector_id = Column(Integer, ForeignKey('sector.id'))
     sector = relationship("Sector", back_populates="companies")
 
-    annual_earnings = relationship("AnnualEarning", back_populates="compani_id")
-    quarterly_earnings = relationship("QuarterlyEarnings", back_populates="compani_id")
+    annual_earnings = relationship("AnnualEarning", back_populates="company")
+    quarterly_earnings = relationship("QuarterlyEarnings", back_populates="company")

@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
-
+from sqlalchemy.orm import Session
 # settings
 from app.settings import get_settings
 
@@ -25,5 +25,7 @@ def get_db():
     finally:
         db.close()
 
-def get_or_create(model:Base):
-    pass
+def commit(model_obj: Base): 
+    with get_db() as session:
+        session.add(model_obj)
+        session.commit()
