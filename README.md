@@ -34,5 +34,14 @@ documentation  in endpoint  /docs endpoint
 ## Run application
 This application requires configure database for composer in  /higo.env.dev 
 > See example on /example.higo.env.dev
-Also requires a /project/.env to store same database for local and key used in alphavantage  [GET KEY](https://www.alphavantage.co/support/#api-key)
-> See example on /project/
+
+
+### Use docker 
+```
+docker-compose -f docker-compose.yml build
+docker-compose -f docker-compose.yml up -d
+```
+## ENV Variables
+This project uses alembic, configurations at env.py
+points to settings db url, and is always taked form 
+os environment with names DATABASE_URL, same case for ALPHAVANTAGE_KEY
