@@ -20,22 +20,17 @@ app = FastAPI(title=APP_TITLE, description=PROJECT_DESCRIPTION)
 Base.metadata.create_all(bind=engine)
 
 
-@app.post("/aggregate/{symbol}")
-def aggregate_symbol(symbol: str, db: Session= Depends(get_db)):
-    company_load = LoadCompany()
-    _cd = company_load.get_company_data(symbol=symbol)
-    #_earnings = company_load.get_company_quarterly_earnings(
-    #    _cd['EARNINGS']
-    # )
-
-    
-
 @app.get("/sumary/{symbol}")
 async def get_company_sumary(symbol: str, db: Session = Depends(get_db)):
+    """
+    This method receibe a symbol, if does not exits in our database
+    go to  extract data, save it on our database and retunr the 
+    stored data 
+    """
     company_solver = CompanySolver(company_symbol=symbol)
     _  = company_solver.get_company_data(db)
     return _
 
-@app.get("/info")
+@app.get("/")
 async def info(settings: APPSettings = Depends(get_settings)):
     return {"app_name": settings.app_name, "admin_email": settings.admin_email}
