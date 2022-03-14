@@ -26,7 +26,7 @@ class CompanySolver():
         if not company:
             all_company_data = get_all_company_data(symbol=self.company_symbol)
             load_company = LoadCompany()
-            load_company.set_commpany_data(
+            company = load_company.set_commpany_data(
                 all_company_data=all_company_data,
                 db=db
             )
