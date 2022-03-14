@@ -34,7 +34,7 @@ class QuarterlyEarnings(Base):
     reported_eps = Column(Float)
     estimated_eps = Column(Float)
     surprise = Column(Float)
-    surprice_percentage = Column(Float)
+    surprise_percentage = Column(Float)
     company_id = Column(Integer, ForeignKey("company.id"))
     company = relationship("Company", back_populates="quarterly_earnings")
 

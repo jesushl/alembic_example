@@ -82,8 +82,8 @@ class LoadCompany():
                 fiscal_date_ending=dirty_quarterlie[fiscal_date_ending_key],
                 reported_eps=float(dirty_quarterlie[reportedEPS_key]),
                 estimated_eps=float(dirty_quarterlie[estimated_eps_key]),
-                surprice = float(dirty_quarterlie[surprise_key]),
-                surprice_percentaje=float(dirty_quarterlie[surprise_percentage_key]),
+                surprise = float(dirty_quarterlie[surprise_key]),
+                surprise_percentaje=float(dirty_quarterlie[surprise_percentage_key]),
                 company_id = company.id
             )
             quarterly_objs = map(to_quarterly, dirty_quarterlies)
