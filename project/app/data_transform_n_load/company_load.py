@@ -86,7 +86,7 @@ class LoadCompany():
                 surprice_percentaje=float(dirty_quarterlies[surprice_percentage_key]),
                 company_id = company.id
             )
-            quarterly_objs = to_quarterly, dirty_quarterlies
+            quarterly_objs = map(to_quarterly, dirty_quarterlies)
             _ = list(map(db.add, quarterly_objs))
             db.commit()
             return True
