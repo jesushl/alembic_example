@@ -7,11 +7,7 @@ from app.settings import get_settings
 from functools import lru_cache
 
 # api url
-from app.constants import (
-    ALPHAVANTAGE_API_URL,
-    EARNINGS_FUNCTION,
-    OVERVIEW_FUNCTION
-)
+from app.constants import ALPHAVANTAGE_API_URL, EARNINGS_FUNCTION, OVERVIEW_FUNCTION
 
 settings = get_settings()
 
@@ -19,9 +15,7 @@ settings = get_settings()
 @lru_cache()
 def get_function_link(symbol: str, function: str):
     return ALPHAVANTAGE_API_URL.format(
-        symbol=symbol, 
-        function=function, 
-        ALPHAVANTAGE_KEY=settings.alphavantage_key
+        symbol=symbol, function=function, ALPHAVANTAGE_KEY=settings.alphavantage_key
     )
 
 
@@ -41,12 +35,8 @@ def get_company_earnings(symbol: str) -> dict:
 
 def get_all_company_data(symbol: str) -> dict:
     all_company_data = dict()
-    company_overview = get_company_overview(
-        symbol=symbol
-    )
-    company_earnings = get_company_earnings(
-        symbol=symbol
-    )
+    company_overview = get_company_overview(symbol=symbol)
+    company_earnings = get_company_earnings(symbol=symbol)
     all_company_data[EARNINGS_FUNCTION] = company_earnings
     all_company_data[OVERVIEW_FUNCTION] = company_overview
     return all_company_data

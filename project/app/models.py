@@ -38,14 +38,15 @@ class QuarterlyEarnings(Base):
     company_id = Column(Integer, ForeignKey("company.id"))
     company = relationship("Company", back_populates="quarterly_earnings")
 
+
 class Company(Base):
     __tablename__ = "company"
     id = Column(Integer, primary_key=True, index=True)
     symbol = Column(String, unique=True)
     description = Column(String)
-    country_id = Column(Integer, ForeignKey('country.id'))
+    country_id = Column(Integer, ForeignKey("country.id"))
     country = relationship("Country", back_populates="companies")
-    sector_id = Column(Integer, ForeignKey('sector.id'))
+    sector_id = Column(Integer, ForeignKey("sector.id"))
     sector = relationship("Sector", back_populates="companies")
 
     annual_earnings = relationship("AnnualEarning", back_populates="company")

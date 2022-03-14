@@ -4,11 +4,13 @@ from sqlalchemy import engine_from_config
 from sqlalchemy import pool
 
 from alembic import context
+
 # settings
 from app.settings import get_settings
+
 settings = get_settings()
 
-# base 
+# base
 from app.database import Base
 
 # this is the Alembic Config object, which provides
@@ -16,7 +18,7 @@ from app.database import Base
 config = context.config
 
 #  Making a connection
-config.set_main_option('sqlalchemy.url', settings.database_url)
+config.set_main_option("sqlalchemy.url", settings.database_url)
 
 # Interpret the config file for Python logging.
 # This line sets up loggers basically.
@@ -72,9 +74,7 @@ def run_migrations_online():
     )
 
     with connectable.connect() as connection:
-        context.configure(
-            connection=connection, target_metadata=target_metadata
-        )
+        context.configure(connection=connection, target_metadata=target_metadata)
 
         with context.begin_transaction():
             context.run_migrations()

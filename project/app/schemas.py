@@ -67,6 +67,7 @@ class CountryCreate(CountryBase):
 
 class Country(CountryBase):
     id: int
+
     class Config:
         orm_mode = True
 
@@ -83,11 +84,13 @@ class CompanyCreate(CompanyBase):
     annual_earnings: List[AnnualEarningBase] = []
     quarterly_earnings: List[QuarterlyEarningsBase] = []
 
+
 class Company(CompanyCreate):
     id: int
 
     class Config:
         orm_mode = True
+
 
 class CompanyResponseModel(Company):
     sector: Sector

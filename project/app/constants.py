@@ -9,29 +9,29 @@ ALPHAVANTAGE_API_URL = "https://www.alphavantage.co/query?function={function}&sy
 
 EARNINGS_FUNCTION = "EARNINGS"
 OVERVIEW_FUNCTION = "OVERVIEW"
-SYMBOL_KEY = 'symbol'
-ANNUAL_EARNINGS_KEY='annualEarnings'
-QUARTERLY_EARNINGS_KEY='quarterlyEarnings'
+SYMBOL_KEY = "symbol"
+ANNUAL_EARNINGS_KEY = "annualEarnings"
+QUARTERLY_EARNINGS_KEY = "quarterlyEarnings"
 ## ALPHAVANTAGE API KEYS
 annual_earnings_key = "annualEarnings"
 quarterly_earnings_key = QUARTERLY_EARNINGS_KEY
-fiscal_date_ending_key="fiscalDateEnding"
-reportedEPS_key='reportedEPS'
-reported_date_key='reportedDate'
-estimated_eps_key='estimatedEPS'
-surprise_key='surprise'
-surprise_percentage_key='surprisePercentage'
-name_key = 'name'
-description_key = 'Description'
-country_key = 'Country'
-industry_key = 'Industry'
-sector_key = 'Sector'
-symbol_overview_key='Symbol'
-symbol_earnings_key='symbol'
-industry_key='Industry'
-sector_key = 'Sector'
+fiscal_date_ending_key = "fiscalDateEnding"
+reportedEPS_key = "reportedEPS"
+reported_date_key = "reportedDate"
+estimated_eps_key = "estimatedEPS"
+surprise_key = "surprise"
+surprise_percentage_key = "surprisePercentage"
+name_key = "name"
+description_key = "Description"
+country_key = "Country"
+industry_key = "Industry"
+sector_key = "Sector"
+symbol_overview_key = "Symbol"
+symbol_earnings_key = "symbol"
+industry_key = "Industry"
+sector_key = "Sector"
 
 # ENV VARS
 ALPHAVANTAGE_KEY = os.getenv("ALPHAVANTAGE_KEY")
 
-DATABASE_URL=os.environ.get("DATABASE_URL", "sqlite:///./sql_app.db")
+DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///./sql_app.db")
