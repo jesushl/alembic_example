@@ -18,11 +18,21 @@ This database representation in code looks like this
 This models are made like this, by now are not normalized, I expeted that alembic helps on that ... but no. 
 This is a debd for next version
 
-## Comany Summary
+## Company Summary
 The company summary make queries to two differet endpoints 
-[OVERVIEW](https://www.alphavantage.co/documentation/#company-overview)
+[OVERVIEW](https://www.alphavantage.co/documentation/#company-overview) and 
 [EARNINGS](https://www.alphavantage.co/documentation/#earnings)
-The application has schemas to receibe company values, but are not implemented.
+
+After get data from alphavantage API the application save some data into database. 
+Use that data to return information about companies
+
+***The application has schemas to receibe company values, but are not implemented.***
 
 
-documentation  in /docs endpoint 
+documentation  in endpoint  /docs endpoint 
+
+## Run application
+This application requires configure database for composer in  /higo.env.dev 
+> See example on /example.higo.env.dev
+Also requires a /project/.env to store same database for local and key used in alphavantage  [GET KEY](https://www.alphavantage.co/support/#api-key)
+> See example on /project/
