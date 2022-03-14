@@ -1,4 +1,3 @@
-from multiprocessing.connection import wait
 from fastapi import FastAPI, Depends
 
 # settings
@@ -20,6 +19,17 @@ app = FastAPI(title=APP_TITLE, description=PROJECT_DESCRIPTION)
 Base.metadata.create_all(bind=engine)
 
 
+
+@app.get("/fetch/{symbol}")
+async def fetch_company_sumary(symbol: str, db: Session = Depends(get_db)):
+    """
+    Not sure if fetch should receibe data in a post... cause can receibe information
+    from other source of thrue and repetitions ... 
+    """
+    company_solver = CompanySolver(company_symbol=symbol)
+    _  = company_solver.get_company_data(db)
+    return _
+
 @app.get("/sumary/{symbol}")
 async def get_company_sumary(symbol: str, db: Session = Depends(get_db)):
     """
@@ -31,6 +41,6 @@ async def get_company_sumary(symbol: str, db: Session = Depends(get_db)):
     _  = company_solver.get_company_data(db)
     return _
 
-@app.get("/")
+@app.get("/info")
 async def info(settings: APPSettings = Depends(get_settings)):
-    return {"app_name": settings.app_name, "admin_email": settings.admin_email}
+    return {"app_name": APP_TITLE,"description":PROJECT_DESCRIPTION , "admin_email": settings.admin_email}

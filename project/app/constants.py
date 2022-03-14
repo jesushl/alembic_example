@@ -1,10 +1,9 @@
 import os
 
-APP_TITLE = "Companies data scraping"
+APP_TITLE = "Companies data tool from alphavantage.co"
 PROJECT_DESCRIPTION = """This application is an API  works to provide information about companies,
-                                                        as name, description, country, sector and lates annual earnings per share and latest 
-                                                        quarterly earnings per share
-                                                        """
+ as name, description, country, sector and lates annual earnings per share and latest 
+ quarterly earnings per share """
 
 ALPHAVANTAGE_API_URL = "https://www.alphavantage.co/query?function={function}&symbol={symbol}&apikey={ALPHAVANTAGE_KEY}"
 
