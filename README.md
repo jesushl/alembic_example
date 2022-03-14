@@ -8,13 +8,10 @@ consumig data from two different endopoints related with Overview and Earnings
 ## Database 
 ```mermaid
     erDiagram
-        CUSTOMER ||--o{ ORDER : places
-        ORDER ||--|{ LINE-ITEM : contains
-        CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
-        COUNTRY ||--|{ COMPANY
-        SECTOR ||--|{ COMPANY
-        ANNUAL_EARNING }|..|{ COMPANY
-        QUARTERLY_EARNING }|..|{ COMPANY
+        COUNTRY ||--|{ COMPANY:contains
+        SECTOR ||--|{ COMPANY:contains
+        ANNUAL_EARNING }|..|{ COMPANY: contains
+        QUARTERLY_EARNING }|..|{ COMPANY: contains
 ```
 
 documentation  in /docs endpoint 
