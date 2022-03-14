@@ -7,7 +7,7 @@ consumig data from two different endopoints related with Overview and Earnings
 
 ## Database 
 ```mermaid
-    erDiagram;
+    erDiagram
         CUSTOMER ||--o{ ORDER : places
         ORDER ||--|{ LINE-ITEM : contains
         CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
