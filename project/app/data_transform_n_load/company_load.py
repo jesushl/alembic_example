@@ -24,7 +24,7 @@ from app.constants import (
     reportedEPS_key,
     reported_date_key,
     surprise_key, 
-    surprice_percentage_key,
+    surprise_percentage_key,
     description_key,
     country_key,
     industry_key,
@@ -83,7 +83,7 @@ class LoadCompany():
                 reported_eps=float(dirty_quarterlie[reportedEPS_key]),
                 estimated_eps=float(dirty_quarterlie[estimated_eps_key]),
                 surprice = float(dirty_quarterlie[surprise_key]),
-                surprice_percentaje=float(dirty_quarterlie[surprice_percentage_key]),
+                surprice_percentaje=float(dirty_quarterlie[surprise_percentage_key]),
                 company_id = company.id
             )
             quarterly_objs = map(to_quarterly, dirty_quarterlies)
