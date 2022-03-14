@@ -11,6 +11,10 @@ consumig data from two different endopoints related with Overview and Earnings
         CUSTOMER ||--o{ ORDER : places
         ORDER ||--|{ LINE-ITEM : contains
         CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
+        COUNTRY ||--|{ COMPANY
+        SECTOR ||--|{ COMPANY
+        ANNUAL_EARNING }|..|{ COMPANY
+        QUARTERLY_EARNING }|..|{ COMPANY
 ```
 
 documentation  in /docs endpoint 
