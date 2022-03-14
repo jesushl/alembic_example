@@ -78,16 +78,17 @@ class LoadCompany():
             ).first()
             if not company:
                 company = self.set_commpany_data(all_company_data)
-            to_quarterly = lambda dirty_querterly: QuarterlyEarnings(
-                fiscal_date_ending=dirty_quarterlies[fiscal_date_ending_key],
-                reported_eps=float(dirty_quarterlies[reported_date_key]),
-                estimated_eps=float(dirty_quarterlies[estimated_eps_key]),
-                surprice = float(dirty_quarterlies[surprice_key]),
-                surprice_percentaje=float(dirty_quarterlies[surprice_percentage_key]),
+            to_quarterly = lambda dirty_quarterlie: QuarterlyEarnings(
+                fiscal_date_ending=dirty_quarterlie[fiscal_date_ending_key],
+                reported_eps=float(dirty_quarterlie[reportedEPS_key]),
+                estimated_eps=float(dirty_quarterlie[estimated_eps_key]),
+                surprice = float(dirty_quarterlie[surprise_key]),
+                surprice_percentaje=float(dirty_quarterlie[surprice_percentage_key]),
                 company_id = company.id
             )
             quarterly_objs = map(to_quarterly, dirty_quarterlies)
             _ = list(map(db.add, quarterly_objs))
+            import pdb; pdb.set_trace()
             db.commit()
             return True
 
