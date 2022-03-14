@@ -15,16 +15,21 @@ ANNUAL_EARNINGS_KEY='annualEarnings'
 QUARTERLY_EARNINGS_KEY='quarterlyEarnings'
 ## ALPHAVANTAGE API KEYS
 annual_earnings_key = "annualEarnings"
-quarterly_earnings_key = "quarterlyEarnings"
+quarterly_earnings_key = QUARTERLY_EARNINGS_KEY
 fiscal_date_ending_key="fiscalDateEnding"
 reportedEPS_key='reportedEPS'
 reported_date_key='reportedDate'
+estimated_eps_key='estimatedEPS'
 surprice_key='surprice'
 surprice_percentage_key='surpricePercentaje'
 name_key = 'name'
-description_key = 'Description',
+description_key = 'Description'
 country_key = 'Country'
 industry_key = 'Industry'
+sector_key = 'Sector'
+symbol_overview_key='Symbol'
+symbol_earnings_key='symbol'
+industry_key='Industry'
 sector_key = 'Sector'
 
 # ENV VARS

@@ -2,7 +2,6 @@
 from sqlalchemy.orm import Session
 # loaders
 from pytest import Session
-from sqlalchemy import over
 from app.data_extraction import company as company_loader
 # models 
 from app.models import(  
@@ -10,7 +9,7 @@ from app.models import(
     Country, 
     AnnualEarning, 
     QuarterlyEarnings,
-    Sector
+    Sector,
     )
 # constants
 from app.constants import (
@@ -26,49 +25,86 @@ from app.constants import (
     reported_date_key,
     surprice_key, 
     surprice_percentage_key,
-    description_key
+    description_key,
+    country_key,
+    industry_key,
+    sector_key,
+    symbol_overview_key,
+    industry_key,
+    sector_key,
+    estimated_eps_key,
+    symbol_earnings_key
 )
 
 class LoadCompany():
-    def __init__(self, db: Session):
-        self.db = db
     
-    def get_company_data(self, symbol: str) -> dict:
-        company_data = dict()
-        company_overview = company_loader.get_company_overview(
-            symbol=symbol
-        )
-        company_earnings = company_loader.get_company_earnings(
-            symbol=symbol
-        )
-        company_data[EARNINGS_FUNCTION] = company_earnings
-        company_data[OVERVIEW_FUNCTION] = company_overview
-        return company_data
-
-    def get_company_overview(self, overview: dict)->bool:
-            symbol = overview[SYMBOL_KEY]
-            company = Company.query.get(
-                Company.symbol==symbol
-            )
-            if not company:
-                comp_instance = Company(
-                    symbol=symbol,
-                    description = overview[description_key]                    
-                )
-
-    def get_company_quarterly_earnings(self, earnings: dict)->bool:
-        symbol = earnings[SYMBOL_KEY]
-        quarterly_earnings = earnings[QUARTERLY_EARNINGS_KEY]
-        company = Company.query.filter(
-            Company.symbol==symbol
-        ).first()
+    def set_commpany_data(self, all_company_data: dict, db: Session)->Company:
+        company_data = all_company_data[OVERVIEW_FUNCTION]
+        _company_symbol=company_data[country_key]
+        # Doble check if company exist
+        company = db.query(Company).filter(Company.symbol==_company_symbol).first()
         if not company:
-           return False 
-        else:
-            q_earnings_lamb = lambda dirty_earning: QuarterlyEarnings(
-                fiscal_date_ending=dirty_earning[fiscal_date_ending_key],
-                reported_eps = dirty_earning[reportedEPS_key],
-                compani_id = company.id
+            _country_name = company_data[country_key]
+            country = db.query(Country).filter(Country.name==_country_name).first()
+            if not  country:
+                country = Country(name=_country_name)
+                db.add(country)
+                db.commit()
+                db.refresh(country)
+            _sector_name = company_data[sector_key]
+            sector = db.query(Sector).filter(Sector.name==_sector_name).first()
+            if not sector:
+                sector = Sector(name=_sector_name)
+                db.add(sector)
+                db.commit()
+                db.refresh(sector)
+            company = Company(
+                symbol=company_data[symbol_overview_key],
+                description=company_data[description_key],
+                country_id=country.id,
+                sector_id=sector.id
             )
-            q_earnings = list(map(q_earnings_lamb, quarterly_earnings))
-           pass
+            db.add(company)
+            db.commit()
+            db.refresh(company) 
+        return company  
+        
+
+    def set_all_company_earning_quarterlies(self, all_company_data: dict, db: Session,)->bool:
+            dirty_quarterlies = all_company_data[EARNINGS_FUNCTION][QUARTERLY_EARNINGS_KEY]
+            symbol = all_company_data[EARNINGS_FUNCTION][symbol_earnings_key]
+            company = db.query(Company).filter(
+                Company.symbol==symbol
+            ).first()
+            if not company:
+                company = self.set_commpany_data(all_company_data)
+            to_quarterly = lambda dirty_querterly: QuarterlyEarnings(
+                fiscal_date_ending=dirty_quarterlies[fiscal_date_ending_key],
+                reported_eps=float(dirty_quarterlies[reported_date_key]),
+                estimated_eps=float(dirty_quarterlies[estimated_eps_key]),
+                surprice = float(dirty_quarterlies[surprice_key]),
+                surprice_percentaje=float(dirty_quarterlies[surprice_percentage_key]),
+                company_id = company.id
+            )
+            quarterly_objs = to_quarterly, dirty_quarterlies
+            _ = list(map(db.add, quarterly_objs))
+            db.commit()
+            return True
+
+    def set_all_company_earning_anual(self, all_company_data: dict, db: Session)->bool:
+        dirty_annuals = all_company_data[EARNINGS_FUNCTION][ANNUAL_EARNINGS_KEY]
+        symbol = all_company_data[EARNINGS_FUNCTION][symbol_earnings_key]
+        company = db.query(Company).filter(
+                Company.symbol==symbol
+            ).first()
+        if not company:
+            company = self.set_commpany_data(all_company_data, db=db)
+        to_annual = lambda dirty_annual: AnnualEarning(
+            fiscal_date_ending=dirty_annual[fiscal_date_ending_key],
+            reported_eps=float(dirty_annual[reportedEPS_key]),
+            company_id=company.id
+        )
+        annual_objs = map(to_annual, dirty_annuals)
+        _ = list(map(db.add, annual_objs))
+        db.commit()
+        return True

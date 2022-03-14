@@ -1,11 +1,7 @@
-from calendar import c
 from datetime import date, datetime
-from typing import Optional
+from typing import Optional, List
 
 from pydantic import BaseModel
-
-from app.models import AnnualEarning, Company
-
 
 # AnnualEarning
 class AnnualEarningBase(BaseModel):
@@ -55,7 +51,6 @@ class SectorCreate(BaseModel):
 
 class Sector(SectorBase):
     id: int
-    companies: list["Company"] = []
 
     class Config:
         orm_mode = True
@@ -72,8 +67,6 @@ class CountryCreate(CountryBase):
 
 class Country(CountryBase):
     id: int
-    companies: list[int] = []
-
     class Config:
         orm_mode = True
 
@@ -87,12 +80,17 @@ class CompanyBase(BaseModel):
 class CompanyCreate(CompanyBase):
     country: CountryBase
     sector: SectorBase
-    annual_earnings: list["AnnualEarningBase"] = []
-    quarterly_earnings: list["QuarterlyEarningsBase"] = []
-
+    annual_earnings: List[AnnualEarningBase] = []
+    quarterly_earnings: List[QuarterlyEarningsBase] = []
 
 class Company(CompanyCreate):
     id: int
 
     class Config:
         orm_mode = True
+
+class CompanyResponseModel(Company):
+    sector: Sector
+    country: Country
+    annual_earnings: AnnualEarning
+    quarterly_earnings: QuarterlyEarnings

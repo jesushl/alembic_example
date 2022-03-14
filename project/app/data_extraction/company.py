@@ -38,5 +38,15 @@ def get_company_earnings(symbol: str) -> dict:
     response = requests.get(api_url)
     return response.json()
 
-def get_company_data():
-    pass
+
+def get_all_company_data(symbol: str) -> dict:
+    all_company_data = dict()
+    company_overview = get_company_overview(
+        symbol=symbol
+    )
+    company_earnings = get_company_earnings(
+        symbol=symbol
+    )
+    all_company_data[EARNINGS_FUNCTION] = company_earnings
+    all_company_data[OVERVIEW_FUNCTION] = company_overview
+    return all_company_data
