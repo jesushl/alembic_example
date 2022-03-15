@@ -38,4 +38,6 @@ DATABASE_URL = os.environ.get(
     "DATABASE_URL", 
     "sqlite:///./sql_app.db"
     )
-print(f"DATABASE URL in constants: {DATABASE_URL}")
+if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
+    DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://")
+    print(f"DATABASE URL in constants: {DATABASE_URL}")
