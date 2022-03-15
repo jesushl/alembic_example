@@ -8,11 +8,11 @@ from app.settings import get_settings
 
 settings = get_settings()
 
-databae_url = settings.database_url
+database_url = settings.database_url
 # TODO: Remove
 print(f"DATABASE URL: {database_url}")
 
-engine = create_engine(databae_url, echo=True)
+engine = create_engine(database_url, echo=True)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 
