@@ -12,9 +12,5 @@ class APPSettings(BaseSettings):
     database_url: str = DATABASE_URL
     alphavantage_key: str
 
-    class Config:
-        env_file = ".env"
-
-
 def get_settings(session: uuid4= None):
     return APPSettings()
