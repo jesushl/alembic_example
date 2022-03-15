@@ -7,8 +7,8 @@ from app.settings import get_settings
 # Session identifier
 from uuid import uuid4
 
-session =  uuid4()
-settings = get_settings(session)
+
+settings = get_settings()
 
 database_url = settings.database_url
 if database_url and database_url.startswith("postgres://"):
