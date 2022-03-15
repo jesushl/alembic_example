@@ -35,3 +35,5 @@ sector_key = "Sector"
 ALPHAVANTAGE_KEY = os.getenv("ALPHAVANTAGE_KEY")
 
 DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///./sql_app.db")
+if "postgres://" in DATABASE_URL:
+    DATABASE_URL.replace("postgres://", "postgresql://")
