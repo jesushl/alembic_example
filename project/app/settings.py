@@ -15,6 +15,6 @@ class APPSettings(BaseSettings):
         env_file = ".env"
 
 
-@lru_cache()
+# @lru_cache()
 def get_settings():
     return APPSettings()

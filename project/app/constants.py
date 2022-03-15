@@ -41,3 +41,4 @@ DATABASE_URL = os.environ.get(
         "postgres://", 
         "postgresql://"
     )
+print(f"DATABASE URL in constants: {DATABASE_URL}")
