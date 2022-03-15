@@ -8,7 +8,10 @@ from app.constants import DATABASE_URL
 class APPSettings(BaseSettings):
     app_name: str = "Companies"
     admin_email: str = "jesushledon@gmail.com"
-    database_url: str = DATABASE_URL
+    database_url: str = DATABASE_URL.replace(
+        "postgres://", 
+        "postgresql://"
+    )
     alphavantage_key: str
 
     class Config:
