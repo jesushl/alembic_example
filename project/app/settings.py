@@ -11,5 +11,6 @@ class APPSettings(BaseSettings):
     database_url: str = DATABASE_URL
     alphavantage_key: str
 
+
 def get_settings():
     return APPSettings()

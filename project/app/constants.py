@@ -34,10 +34,7 @@ sector_key = "Sector"
 # ENV VARS
 ALPHAVANTAGE_KEY = os.getenv("ALPHAVANTAGE_KEY")
 
-DATABASE_URL = os.environ.get(
-    "DATABASE_URL", 
-    "sqlite:///./sql_app.db"
-    )
+DATABASE_URL = os.environ.get("DATABASE_URL", "sqlite:///./sql_app.db")
 if DATABASE_URL and DATABASE_URL.startswith("postgres://"):
     DATABASE_URL = DATABASE_URL.replace("postgres://", "postgresql://", 1)
     print(f"DATABASE URL in constants: {DATABASE_URL}")
