@@ -16,5 +16,5 @@ class APPSettings(BaseSettings):
         env_file = ".env"
 
 
-def get_settings(session: uuid4):
+def get_settings(session: uuid4= None):
     return APPSettings()
