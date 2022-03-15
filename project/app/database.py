@@ -11,6 +11,8 @@ session =  uuid4()
 settings = get_settings(session)
 
 database_url = settings.database_url
+if database_url and database_url.startswith("postgres://"):
+    database_url = database_url.replace("postgres://", "postgresql://", 1)
 # TODO: Remove
 print(f"DATABASE URL: {database_url}")
 
