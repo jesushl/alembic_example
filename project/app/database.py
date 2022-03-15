@@ -2,11 +2,13 @@ from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import Session
-
 # settings
 from app.settings import get_settings
+# Session identifier
+from uuid import uuid4
 
-settings = get_settings()
+session =  uuid4()
+settings = get_settings(session)
 
 database_url = settings.database_url
 # TODO: Remove
