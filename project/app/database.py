@@ -9,6 +9,7 @@ from app.settings import get_settings
 settings = get_settings()
 
 databae_url = settings.database_url
+print("DATABASE URL")
 engine = create_engine(databae_url, echo=True)
 
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
